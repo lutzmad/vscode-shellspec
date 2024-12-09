@@ -1,0 +1,32 @@
+{
+  "name": "shellspec",
+  "displayName": "Shellspec",
+  "description": "A simple Shellspec syntax highlighting extension.",
+  "version": "0.0.1",
+  "author": "Lutz Mader",
+  "publisher": "lutzmad",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.55.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/lutzmad/vscode-shellspec"
+  },
+  "contributes": {
+    "languages": [{
+      "id": "shellspec",
+      "aliases": ["Shellspec", "shellspec"],
+      "extensions": ["_spec.sh"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "shellspec",
+      "scopeName": "source.shellspec",
+      "path": "./syntaxes/shellspec.tmLanguage.json"
+    }]
+  }
+}

@@ -1,0 +1,220 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "shellspec",
+	"patterns": [{ "include": "#keywords" },
+		{ "include": "#strings" },
+		{ "include": "#comments"
+	}],
+	"repository": {
+		"expressions": {
+			"patterns": [{ "include": "#keywords" },
+				{ "include": "#strings" },
+				{ "include": "#comments"
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.shellspec",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"describes": {
+			"comment": "Shellspec describes",
+			"patterns": [{
+                "name": "keyword.control.shellspec",
+                "begin": "\\b(Describe|Context|ExampleGroup)\\b",
+			    "end": "\\b(End)\\b"
+            }]
+		},
+		"examples": {
+			"comment": "Shellspec examples",
+        	"patterns": [{
+                "name": "keyword.control.shellspec",
+                "begin": "\\b(It|Specify|Example)\\b",
+			    "end": "\\b(End)\\b"
+            }]
+		},
+		"todos": {
+			"comment": "Shellspec todos",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(Todo)\\b"
+            }]
+		},
+		"evaluations": {
+			"comment": "Shellspec evaluation",
+            "patterns": [{
+            	"name": "keyword.control.shellspec",
+                "begin": "\\b(When)[ ](call|run[ ]command|run[ ]script|run[ ]source|run)\\b",
+  				"end": "\\b(The|End)\\b",
+                "beginCaptures": {
+					"1": { "name": "keyword.control.shellspec" },
+                    "2": { "name": "keyword.control.shellspec" }
+                },
+                "endCaptures": {
+                    "0": { "name": "keyword.control.shellspec" }
+                },
+				"patterns": [{ "include": "#commands" },
+					{ "include": "#comments"
+				}]
+            }]
+		},
+		"expectations": {
+			"comment": "Shellspec expectation",
+			"name": "keyword.control.shellspec",
+			"begin": "\\b(The)\\b",
+			"end": "\\b(The|End)\\b",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.shellspec" },
+				"2": { "name": "keyword.control.shellspec" }
+			},
+			"endCaptures": {
+				"0": { "name": "keyword.control.shellspec" }
+			},
+			"patterns": [{ "include": "#subjects" },
+				{ "include": "#modifiers" },
+				{ "include": "#comments"
+			}]
+		},
+		"subjects": {
+			"comment": "Shellspec subjects",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(stdout|output|line|word|stderr|error|status|path|file|directory|value|function|variable)\\b"
+            }]
+		},
+		"modifiers": {
+			"comment": "Shellspec modifiers",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(line|lines|word|length|content|result)\\b"
+            }]
+		},
+		"matchers": {
+			"comment": "Shellspec matchers",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(satisfy|successful)\\b"
+			},{
+				"name": "keyword.control.shellspec",
+                "match": "\\b(be[ ](exist|file|directory|empty[ ]file|empty[ ]directory|symlink|pipe|socket|readable|writeable|executable|block[ ]device|character[ ]device))\\b"
+			},{
+				"name": "keyword.control.shellspec",
+				"match": "\\b(have[ ](setgid|setuid))\\b"
+			},{
+				"name": "keyword.control.shellspec",
+				"match": "\\b(be[ ](|success|failure))\\b"	
+			},{
+				"name": "keyword.control.shellspec",
+				"match": "\\b(equal|start[ ]with|end[ ]with|include|match[ ]pattern)\\b"
+			},{
+				"name": "keyword.control.shellspec",
+				"match": "\\b(be[ ]valid[ ](number|funcname))\\b"
+			},{
+				"name": "keyword.control.shellspec",
+				"match": "\\b(be[ ](defined|undefined|present|blank|exported|readonly))\\b"
+	        }]
+		},
+		"asserts": {},
+		"skips": {
+			"comment": "Shellspec skips",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(pending|skip|skip[ ]if)\\b"
+			},{ "include": "#strings"
+			},{ "include": "#comments"
+            }]
+		},
+		"hooks": {
+			"comment": "Shellspec hooks",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(BeforeEach|AfterEach|BeforeCall|AfterCall|BeforeRun|AfterRun|Before|After)\\b"
+			},{ "include": "#strings"
+			},{ "include": "#comments"
+            }]
+		},
+		"helpers": {
+			"comment": "Shellspec helpers",
+            "patterns": [{
+                "name": "keyword.control.shellspec",
+                "match": "\\b(Dump)\\b"
+			},{
+				"name": "keyword.control.shellspec",
+                "match": "\\b(Include)\\b"
+			},{
+				"name": "keyword.control.shellspec",
+                "match": "\\b(Set)\\b"
+			},{
+				"name": "keyword.control.shellspec",
+                "match": "\\b(Path|File|Dir)\\b"
+			},{
+				"name": "keyword.control.shellspec",
+				"begin": "Data",
+				"end": "End",
+				"captures": {
+                    "0": { "name": "comment.line.shellspec" }
+                }
+			},{
+				"name": "keyword.control.shellspec",
+				"begin": "Parameters",
+				"end": "End",
+				"captures": {
+                    "0": { "name": "comment.line.shellspec" }
+                }
+			},{ "include": "#strings"
+			},{ "include": "#comments"
+            }]
+		},
+		"directives": {},
+		"mockings": {},
+		"intercepts": {},
+		"strings": {
+			"comment": "Shellspec strings",
+            "patterns": [{
+            	"name": "string.quoted.other.shellspec",
+                "begin": "`",
+                "end": "`",
+				"patterns": [{ 
+                    "name": "constant.character.escape.shellspec",
+                        "match": "\\\\."
+                }]
+            },{
+				"name": "string.quoted.double.shellspec",
+				"begin": "\"",
+				"end": "\"",
+				"patterns": [{ 
+            		"name": "constant.character.escape.shellspec",
+                	"match": "\\\\."
+                }]
+            },{
+                "name": "string.quoted.single.shellspec",
+                "begin": "'",
+                "end": "'",
+				"patterns": [{ 
+                    "name": "constant.character.escape.shellspec",
+                    "match": "\\\\."
+                }]
+        	}]
+		},
+        "comments": {
+            "comment": "Shellspec comments",
+            "patterns": [{
+                "name": "comment.line.shellspec",
+                "begin": "#",
+                "end": "$",
+                "captures": {
+                    "0": { "name": "comment.line.shellspec" }
+                },
+                "patterns": []
+            }]
+        },
+        "commands": {
+            "comment": "Shellspec shell commands",
+            "patterns": [{
+                "include": "source.shell"
+            }]
+        }
+	},
+	"scopeName": "source.shellspec"
+}
