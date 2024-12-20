@@ -36,19 +36,9 @@
 		"describes": {
 			"comment": "Shellspec describes",
 			"patterns": [{
-				"begin": "\\b(xDescribe|xContext|xExampleGroup)\\b",
+				"begin": "\\b((f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup)\\b",
 				"end": "\\b(End)\\b",
 				"beginCaptures": {
-					"1": { "name": "keyword.operator.shellspec" }
-				},
-                "endCaptures": {
-                    "1": { "name": "keyword.operator.shellspec" }
-                },
-				"patterns": [{ "include": "#expressions" }]
-			},{
-                "begin": "\\b(f?Describe|f?Context|f?ExampleGroup)\\b",
-			    "end": "\\b(End)\\b",
-                "beginCaptures": {
 					"1": { "name": "keyword.control.shellspec" }
 				},
                 "endCaptures": {
@@ -60,31 +50,9 @@
 		"examples": {
 			"comment": "Shellspec examples",
         	"patterns": [{
-				"begin": "\\b(xIt|xSpecify|xExample)\\b",
+				"begin": "\\b((f|x)?It|(f|x)?Specify|(f|x)?Example)\\b",
 				"end": "\\b(End)\\b",
 				"beginCaptures": {
-					"1": { "name": "keyword.operator.shellspec" }
-				},
-                "endCaptures": {
-                    "1": { "name": "keyword.operator.shellspec" }
-                },
-				"patterns": [{ "include": "#todos" },
-					{ "include": "#hooks" },
-                    { "include": "#skips" },
-					{ "include": "#helpers"},
-					{ "include": "#directives"},
-					{ "include": "#asserts" },
-					{ "include": "#evaluations" },
-					{ "include": "#expectations" },
-					{ "include": "#strings" },
-					{ "include": "#values" },
-					{ "include": "#comments" },
-					{ "include": "#constants"
-				}]
-			},{
-                "begin": "\\b(f?It|f?Specify|f?Example)\\b",
-			    "end": "\\b(End)\\b",
-                "beginCaptures": {
 					"1": { "name": "keyword.control.shellspec" }
 				},
                 "endCaptures": {
@@ -145,9 +113,9 @@
                     "0": { "name": "keyword.control.shellspec" }
                 }
 			},{ "include": "#matchers" },
-			{ "include": "#chains" },
-			{ "include": "#strings" },
-			{ "include": "#values"
+				{ "include": "#chains" },
+				{ "include": "#strings" },
+				{ "include": "#values"
 			}]
 		},
 		"subjects": {
@@ -292,7 +260,8 @@
 				"name": "string.interpolated.shellspec",
 				"begin": "\\[",
 				"end": "\\]",
-				"patterns": [{ "include": "source.shell" }]
+				"patterns": [{ "include": "source.shell"
+				}]
             }]
 		},
 		"strings": {
@@ -303,7 +272,7 @@
                 "end": "`",
 				"patterns": [{ 
                     "name": "constant.character.escape.shellspec",
-                        "match": "\\\\."
+                    "match": "\\\\."
                 }]
             },{
 				"name": "string.quoted.double.shellspec",
@@ -354,7 +323,8 @@
 				"name": "string.quoted.other.shellspec",
 				"begin": "`",
 				"end": "`",
-				"patterns": [{ "include": "source.shell" }]
+				"patterns": [{ "include": "source.shell"
+				}]
 			},{
 				"include": "source.shell"
 			}]
@@ -371,7 +341,7 @@
 			"comment": "Shellspec constant keywords",
 			"patterns": [{
 				"name": "support.constant.shellspec",
-				"match": "\\b(SHELLSPEC_ROOT|SHELLSPEC_LIB|SHELLSPEC_LIBEXEC|SHELLSPEC_TMPDIR|SHELLSPEC_TMPBASE|SHELLSPEC_WORKDIR|SHELLSPEC_PROJECT_ROOT|SHELLSPEC_SPECDIR|SHELLSPEC_HELPERDIR|SHELLSPEC_LOAD_PATH|SHELLSPEC_UNIXTIME|SHELLSPEC_SPECFILE|SHELLSPEC_SPEC_NO|SHELLSPEC_GROUP_ID|SHELLSPEC_EXAMPLE_ID|SHELLSPEC_EXAMPLE_NO)\\b"
+				"match": "\\b(\\$)?(SHELLSPEC_ROOT|SHELLSPEC_LIB|SHELLSPEC_LIBEXEC|SHELLSPEC_TMPDIR|SHELLSPEC_TMPBASE|SHELLSPEC_WORKDIR|SHELLSPEC_PROJECT_ROOT|SHELLSPEC_SPECDIR|SHELLSPEC_HELPERDIR|SHELLSPEC_LOAD_PATH|SHELLSPEC_UNIXTIME|SHELLSPEC_SPECFILE|SHELLSPEC_SPEC_NO|SHELLSPEC_GROUP_ID|SHELLSPEC_EXAMPLE_ID|SHELLSPEC_EXAMPLE_NO)\\b"
 			}]
 		}
 	},
