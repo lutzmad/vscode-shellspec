@@ -2,7 +2,7 @@
 
 This is the README for the extension "Shellspec".
 
-This is a simple Shellspec core syntax highlighting extension.
+This is a simple Shellspec syntax highlighting extension.
 
 ## Features
 
