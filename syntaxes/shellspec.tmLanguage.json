@@ -333,8 +333,10 @@
 			"comment": "Shellspec functions",
             "patterns": [{
 				"name": "support.function.shellspec",
-				"begin": "[\\w\\d_]*\\(",
-				"end": "\\)"
+				"begin": "\\b([\\w\\d_]+)(\\()",
+				"end": "\\)",
+				"patterns": [{ "include": "source.shell"
+				}]
 			}]
 		},
 		"constants": {
