@@ -174,9 +174,18 @@
 		"skips": {
 			"comment": "Shellspec skips",
             "patterns": [{
+                "begin": "\\b(Skip[ ]*if)\\b",
+				"end": "\\b(?=((f|x)?It|(f|x)?Specify|(f|x)?Example))\\b",
+				"captures": {
+					"1": { "name": "keyword.control.shellspec" }
+				},
+				"patterns": [{ "include": "#strings" },
+					{ "include": "#conditions"
+				}]
+			},{
                 "name": "keyword.control.shellspec",
                 "match": "\\b(Pending|Skip[ ]*if|Skip|Todo)\\b"
-			},{ "include": "#conditions"
+			},{ "include": "#strings"
             }]
 		},
 		"hooks": {
@@ -262,6 +271,8 @@
 				"end": "\\]",
 				"patterns": [{ "include": "source.shell"
 				}]
+			},{
+				"include": "source.shell"
             }]
 		},
 		"strings": {
