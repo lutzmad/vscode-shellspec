@@ -175,7 +175,7 @@
 			"comment": "Shellspec skips",
             "patterns": [{
                 "begin": "\\b(Skip[ ]*if)\\b",
-				"end": "\\b(?=((f|x)?It|(f|x)?Specify|(f|x)?Example|(f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup|BeforeEach|AfterEach|BeforeAll|AfterAll|BeforeCall|AfterCall|BeforeRun|AfterRun|Before|After|Dump|Include|Set|Path|File|Dir|Data|Parameters|Mock|End))\\b",
+				"end": "\\b(?=((f|x)?It|(f|x)?Specify|(f|x)?Example|(f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup|When|The|Pending|Skip|Todo|BeforeEach|AfterEach|BeforeAll|AfterAll|BeforeCall|AfterCall|BeforeRun|AfterRun|Before|After|Dump|Include|Set|Path|File|Dir|Data|Parameters|Mock|End))\\b",
 				"captures": {
 					"1": { "name": "keyword.control.shellspec" }
 				},
