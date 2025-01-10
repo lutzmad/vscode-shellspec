@@ -83,11 +83,15 @@
 		"evaluations": {
 			"comment": "Shellspec evaluation",
             "patterns": [{
-				"match": "\\b(When[ ]*(call|run[ ]*command|run[ ]*script|run[ ]*source|run))\\b",
+				"begin": "\\b(When[ ]*(call|run[ ]*command|run[ ]*script|run[ ]*source|run))\\b",
+				"end": "\\b(?=(When|The|End))\\b",
 				"captures": {
 					"1": { "name": "keyword.control.shellspec" },
 					"2": { "name": "keyword.control.shellspec" }
-				}
+				},
+				"patterns": [{ "include": "#strings" },
+					{ "include": "#commands"
+				}]
             }]
 		},
 		"expectations": {
