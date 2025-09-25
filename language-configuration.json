@@ -26,5 +26,10 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    // symbols that are used to auto indent
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*((f|x)?It|(f|x)?Specify|(f|x)?Example|(f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup|\\{[^}]*|\\[[^\\]]*|\\([^)]*)\\s*.*",
+        "decreaseIndentPattern": "^\\s*(End|[\\}\\]\\)])\\s*.*"
+    }
 }
