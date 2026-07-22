@@ -24,6 +24,10 @@ There are no known issues in the extension.
 
 The extension release notes.
 
+### 0.0.2
+
+Fix some failures.
+
 ### 0.0.1
 
 Initial release.
