@@ -9,6 +9,7 @@
 		{ "include": "#describes" },
 		{ "include": "#strings" },
 		{ "include": "#values" },
+		{ "include": "#conditions" },
 		{ "include": "#comments" },
 		{ "include": "#constants"
 	}],
@@ -23,6 +24,7 @@
 				{ "include": "#examples" },
 				{ "include": "#strings" },
 				{ "include": "#values" },
+				{ "include": "#conditions" },
 				{ "include": "#comments" },
 				{ "include": "#constants"
 			}]
@@ -36,8 +38,8 @@
 		"describes": {
 			"comment": "Shellspec describes",
 			"patterns": [{
-				"begin": "\\b(((f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup)([ ]*\"[^\"]*\"|[ ]*'[^']*')([ ]+([\\w\\d_]*:?[\\w\\d_]+))*)\\b",
-				"end": "\\b(End)\\b",
+				"begin": "\\b(((f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup)([ ]+\"[^\"]*\"|[ ]+'[^']*')([ ]+([\\w\\d_]*:?[\\w\\d_]+))*)",
+				"end": "\\b(End)",
 				"beginCaptures": {
 					"2": { "name": "keyword.control.shellspec" },
 					"6": { "name": "string.quoted.string.shellspec" },
@@ -48,8 +50,8 @@
                 },
 				"patterns": [{ "include": "#expressions" }]
 			},{
-				"begin": "\\b((f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup)\\b",
-				"end": "\\b(End)\\b",
+				"begin": "\\b((f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup)",
+				"end": "\\b(End)",
 				"beginCaptures": {
 					"1": { "name": "keyword.control.shellspec" }
 				},
@@ -62,8 +64,8 @@
 		"examples": {
 			"comment": "Shellspec examples",
         	"patterns": [{
-				"begin": "\\b(((f|x)?It|(f|x)?Specify|(f|x)?Example)([ ]*\"[^\"]*\"|[ ]*'[^']*')([ ]+([\\w\\d_]*:?[\\w\\d_]+))*)\\b",
-				"end": "\\b(End)\\b",
+				"begin": "\\b(((f|x)?It|(f|x)?Specify|(f|x)?Example)([ ]+\"[^\"]*\"|[ ]+'[^']*')([ ]+([\\w\\d_]*:?[\\w\\d_]+))*)",
+				"end": "\\b(End)",
 				"beginCaptures": {
 					"2": { "name": "keyword.control.shellspec" },
 					"6": { "name": "string.quoted.string.shellspec" },
@@ -82,12 +84,13 @@
 					{ "include": "#expectations" },
 					{ "include": "#strings" },
 					{ "include": "#values" },
+					{ "include": "#conditions" },
 					{ "include": "#comments" },
 					{ "include": "#constants"
 				}]
 			},{
-				"begin": "\\b((f|x)?It|(f|x)?Specify|(f|x)?Example)\\b",
-				"end": "\\b(End)\\b",
+				"begin": "\\b((f|x)?It|(f|x)?Specify|(f|x)?Example)",
+				"end": "\\b(End)",
 				"beginCaptures": {
 					"1": { "name": "keyword.control.shellspec" }
 				},
@@ -104,6 +107,7 @@
 					{ "include": "#expectations" },
 					{ "include": "#strings" },
 					{ "include": "#values" },
+					{ "include": "#conditions" },
 					{ "include": "#comments" },
 					{ "include": "#constants"
 				}]
@@ -119,24 +123,20 @@
 		"evaluations": {
 			"comment": "Shellspec evaluation",
             "patterns": [{
-				"begin": "\\b(When[ ]*(call|run[ ]*command|run[ ]*script|run[ ]*source|run))([ ]+)?([\\w\\-_.\\/:#%]+)([ ]+)?([\\w\\-_.\\/:#%!\"$&()=?*+'#<>,;: \\[\\]@]+)\\b",
-				"end": "\\b(?=(When|The|End))\\b",
+				"match": "\\b(When[ ]+(call|run[ ]+command|run[ ]+script|run[ ]+source|run))([ ]+)?([\\w\\-_.\\/:#%]+)([ ]+)?([\\w\\-_.\\/:#%!\"$&()=?*+'#<>,;: \\[\\]@]+)",
 				"captures": {
 					"1": { "name": "keyword.control.shellspec" },
 					"3": { "name": "keyword.control.shellspec" },
 					"4": { "name": "string.quoted.other.shellspec" },
 					"6": { "name": "string.quoted.other.shellspec" }
-				},
-				"patterns": [{ "include": "#strings" },
-					{ "include": "#commands"
-				}]
+				}
             }]
 		},
 		"expectations": {
 			"comment": "Shellspec expectation",
 			"patterns": [{
 				"begin": "\\b(The)\\b",
-				"end": "\\b(should([ ]*not)*)\\b",
+				"end": "\\b(should([ ]+not)*)\\b",
 				"beginCaptures": {
 					"1": { "name": "keyword.control.shellspec" }
 				},
@@ -150,7 +150,7 @@
 					{ "include": "#values"
 				}]
             },{
-                "match": "\\b(should([ ]*not)*)\\b",
+                "match": "\\b(should([ ]+not)*)\\b",
 				"captures": {
                     "0": { "name": "keyword.control.shellspec" }
                 }
@@ -163,19 +163,19 @@
 		"subjects": {
 			"comment": "Shellspec subjects",
             "patterns": [{
-				"match": "\\b(line|word|status)[ ]*([+-]?\\d+)\\b",
+				"match": "\\b(line|word|status)[ ]+([+-]?\\d+)\\b",
 				"captures": {
 					"1": { "name": "keyword.other.shellspec" },
 					"2": { "name": "constant.numeric.integer.shellspec" }
 				}
 			},{
-				"match": "\\b(path|file|directory)[ ]*((\"\\/[^\"]*\")|('\\/[^']*')|(\\/[\\w\\-_.\\/:#%]+))\\b",
+				"match": "\\b(path|file|directory)[ ]+((\"\\/[^\"]*\")|('\\/[^']*')|(\\/[\\w\\-_.\\/:#%]+))\\b",
 				"captures": {
 					"1": { "name": "keyword.other.shellspec" },
 					"2": { "name": "constant.character.path.shellspec" }
 				}
 			},{
-				"match": "\\b(value|function|variable)[ ]*((\"\\/[^\"]*\")|('\\/[^']*')|([\\w\\d_]+))\\b",
+				"match": "\\b(value|function|variable)[ ]+((\"\\/[^\"]*\")|('\\/[^']*')|([\\w\\d_]+))\\b",
 				"captures": {
 					"1": { "name": "keyword.other.shellspec" },
 					"2": { "name": "constant.character.string.shellspec" }
@@ -199,22 +199,22 @@
                 "match": "\\b(satisfy|successful|exist)\\b"
 			},{
                 "name": "keyword.other.shellspec",
-                "match": "\\b(be[ ]*(exist|file|directory|empty[ ]*file|empty[ ]*directory|symlink|pipe|socket|readable|writeable|executable|block[ ]*device|character[ ]*device))\\b"
+                "match": "\\b(be[ ]+(exist|file|directory|empty[ ]+file|empty[ ]+directory|symlink|pipe|socket|readable|writeable|executable|block[ ]+device|character[ ]+device))\\b"
 			},{
                 "name": "keyword.other.shellspec",
-				"match": "\\b((have|has)[ ]*(setgid|setuid))\\b"
+				"match": "\\b((have|has)[ ]+(setgid|setuid))\\b"
 			},{
                 "name": "keyword.other.shellspec",
-				"match": "\\b(be[ ]*(|success|failure))\\b"	
+				"match": "\\b(be[ ]+(|success|failure))\\b"	
 			},{
                 "name": "keyword.other.shellspec",
-				"match": "\\b(equal|eq|start[ ]*with|end[ ]*with|include|match[ ]*pattern|match)\\b"
+				"match": "\\b(equal|eq|start[ ]+with|end[ ]+with|include|match[ ]+pattern|match)\\b"
 			},{
                 "name": "keyword.other.shellspec",
-				"match": "\\b(be[ ]*valid[ ]*(number|funcname))\\b"
+				"match": "\\b(be[ ]+valid[ ]+(number|funcname))\\b"
 			},{
                 "name": "keyword.other.shellspec",
-				"match": "\\b(be[ ]*(defined|undefined|present|blank|exported|readonly))\\b"
+				"match": "\\b(be[ ]+(defined|undefined|present|blank|exported|readonly))\\b"
 	        }]
 		},
 		"chains": {
@@ -234,18 +234,13 @@
 		"skips": {
 			"comment": "Shellspec skips",
             "patterns": [{
-                "begin": "\\b(Skip[ ]*if)\\b",
-				"end": "\\b(?=((f|x)?It|(f|x)?Specify|(f|x)?Example|(f|x)?Describe|(f|x)?Context|(f|x)?ExampleGroup|When|The|Pending|Skip|Todo|BeforeEach|AfterEach|BeforeAll|AfterAll|BeforeCall|AfterCall|BeforeRun|AfterRun|Before|After|Dump|Include|Set|Path|File|Dir|Data|Parameters|Mock|End))\\b",
+                "match": "\\b(Skip[ ]+if)\\b",
 				"captures": {
 					"1": { "name": "keyword.control.shellspec" }
-				},
-				"patterns": [{ "include": "#strings" },
-					{ "include": "#conditions"
-				}]
+				}
 			},{
                 "name": "keyword.control.shellspec",
-                "match": "\\b(Pending|Skip[ ]*if|Skip|Todo)\\b"
-			},{ "include": "#strings"
+                "match": "\\b(Pending|Skip[ ]+if|Skip|Todo)\\b"
             }]
 		},
 		"hooks": {
@@ -329,10 +324,10 @@
 				"name": "string.interpolated.shellspec",
 				"begin": "\\[",
 				"end": "\\]",
-				"patterns": [{ "include": "source.shell"
-				}]
-			},{
-				"include": "source.shell"
+				"patterns": [{
+                    "name": "constant.character.escape.shellspec",
+                    "match": "\\\\."
+                }]
             }]
 		},
 		"tags": {
@@ -355,7 +350,7 @@
             	"name": "string.quoted.other.shellspec",
                 "begin": "`",
                 "end": "`",
-				"patterns": [{ 
+				"patterns": [{
                     "name": "constant.character.escape.shellspec",
                     "match": "\\\\."
                 }]
@@ -363,7 +358,7 @@
 				"name": "string.quoted.double.shellspec",
 				"begin": "\"",
 				"end": "\"",
-				"patterns": [{ 
+				"patterns": [{
             		"name": "constant.character.escape.shellspec",
                 	"match": "\\\\."
                 }]
@@ -371,7 +366,7 @@
                 "name": "string.quoted.single.shellspec",
                 "begin": "'",
                 "end": "'",
-				"patterns": [{ 
+				"patterns": [{
                     "name": "constant.character.escape.shellspec",
                     "match": "\\\\."
                 }]
@@ -410,8 +405,6 @@
 				"end": "`",
 				"patterns": [{ "include": "source.shell"
 				}]
-			},{
-				"include": "source.shell"
 			}]
 		},
 		"functions": {
